@@ -1,0 +1,33 @@
+version: 1
+endpoints:
+  - method: GET
+    path: /orders/{id}
+    description: 订单状态查询
+    stages:
+      - after_seconds: 0
+        status_code: 200
+        headers:
+          Content-Type: application/json
+        body:
+          id: "{id}"
+          status: processing
+      - after_seconds: 5
+        status_code: 200
+        body:
+          id: "{id}"
+          status: shipped
+      - after_seconds: 30
+        status_code: 200
+        body:
+          id: "{id}"
+          status: delivered
+
+  - method: POST
+    path: /orders
+    description: 创建订单
+    stages:
+      - after_seconds: 0
+        status_code: 201
+        body:
+          id: "1"
+          status: created

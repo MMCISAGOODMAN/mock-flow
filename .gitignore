@@ -1,0 +1,7 @@
+mockflow
+*.db
+dist/
+web/node_modules
+.gocache
+.idea
+.DS_Store
